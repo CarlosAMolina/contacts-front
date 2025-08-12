@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-import './src/server.js'
+import { start } from './src/server.js'
+
+start();
