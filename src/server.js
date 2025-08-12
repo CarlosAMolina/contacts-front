@@ -12,11 +12,11 @@ export const start = () => {
   });
 }
 
-const createServer = (notes) => {
+const createServer = () => {
   return http.createServer(async (req, res) => {
     const HTML_PATH = new URL('./template.html', import.meta.url).pathname;
     const template = await fs.readFile(HTML_PATH, 'utf-8');
-    const html = interpolate(template, {contacts: formatNotes(contacts)});
+    const html = interpolate(template, {contacts: formatContacts(contacts)});
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end(html);
   });
@@ -28,7 +28,7 @@ const interpolate = (html, data) => {
   });
 }
 
-const formatNotes = (contacts) => {
+const formatContacts = (contacts) => {
   return contacts.map(contact => {
     return `
       <div class="note">
