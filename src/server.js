@@ -33,6 +33,7 @@ const formatContacts = (contacts) => {
         return `
       <div class="contact">
         ${formatName(contact)}
+        ${formatNicknames(contact)}
         <div class="data">
           ${formatPhones(contact)}
         </div>
@@ -44,6 +45,19 @@ const formatContacts = (contacts) => {
 
 const formatName = (contact) => {
     return typeof contact.surname === "undefined" ? `<h1>${contact.name}</h1>` : `<h1>${contact.name} ${contact.surname}</h1>`;
+}
+
+const formatNicknames = (contact) => {
+    if (typeof contact.nicknames === "undefined") {
+        return "";
+    }
+    const result = contact.nicknames.map(nickname => `<div class="nickname">${nickname}</div>`).join('');
+    return `
+        <div class="nicknames">
+          <h2>Mote</h2>
+          ${result}
+        </div>
+        `
 }
 
 const formatPhones = (contact) => {
