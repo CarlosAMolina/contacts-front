@@ -31,7 +31,7 @@ const interpolate = (html, data) => {
 const formatContacts = (contacts) => {
     return contacts.map(contact => {
         return `
-      <div class="note">
+      <div class="contact">
         <p>${contact.name}</p>
         <div class="tags">
           ${contact.phones.map(phone => `<span class="tag">${phone.number}</span>`).join('')}
