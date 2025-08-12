@@ -37,6 +37,7 @@ const formatContacts = (contacts) => {
           ${formatPhones(contact)}
         </div>
       </div>
+      <hr/>
     `
     }).join('\n')
 }
