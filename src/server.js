@@ -62,16 +62,6 @@ const formatAddresses = (contact) => {
         `
 }
 
-const formatCategories = (contact) => {
-    const config = {
-        values: contact.categories,
-        tagSection: "categories",
-        tagValue: "category",
-        title: "Categoría",
-    }
-    return formatArray(config);
-}
-
 // config = {
 //     values: [],
 //     tagSection: "",
@@ -89,6 +79,16 @@ const formatArray = (config) => {
           ${result}
         </div>
         `
+}
+
+const formatCategories = (contact) => {
+    const config = {
+        values: contact.categories,
+        tagSection: "categories",
+        tagValue: "category",
+        title: "Categoría",
+    }
+    return formatArray(config);
 }
 
 const formatDiscord = (contact) => {
