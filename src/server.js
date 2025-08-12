@@ -63,13 +63,29 @@ const formatAddresses = (contact) => {
 }
 
 const formatCategories = (contact) => {
-    if (typeof contact.categories === "undefined") {
+    const config = {
+        values: contact.categories,
+        tagSection: "categories",
+        tagValue: "category",
+        title: "Categoría",
+    }
+    return formatArray(config);
+}
+
+// config = {
+//     values: [],
+//     tagSection: "",
+//     tagValue: "",
+//     title: "",
+// }
+const formatArray = (config) => {
+    if (typeof config.values === "undefined") {
         return "";
     }
-    const result = contact.categories.map(category => `<div class="category"><p>${category}</p></div>`).join('');
+    const result = config.values.map(value => `<div class=${config.tagValue}><p>${value}</p></div>`).join('');
     return `
-        <div class="categories">
-          <h2>Categoría</h2>
+        <div class=${config.tagSection}>
+          <h2>${config.title}</h2>
           ${result}
         </div>
         `
