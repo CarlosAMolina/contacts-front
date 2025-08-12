@@ -47,7 +47,8 @@ const formatContacts = (contacts) => {
 const formatId = (contact) => {
     return `
         <div class="id">
-          <p>ID: ${contact.id}</p>
+          <h2>ID</h2>
+          <p>${contact.id}</p>
         </div>
         `
 }
