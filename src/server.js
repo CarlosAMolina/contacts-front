@@ -33,8 +33,8 @@ const formatContacts = (contacts) => {
         return `
       <div class="contact">
         <p>${contact.name}</p>
-        <div class="phones">
-          ${contact.phones.map(phone => `<span class="data">${phone.number}</span>`).join('')}
+        <div class="data">
+          <p>${contact.phones.map(phone => phone.number).join('<br>')}</p>
         </div>
       </div>
     `
