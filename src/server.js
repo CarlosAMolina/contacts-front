@@ -39,6 +39,7 @@ const formatContacts = (contacts) => {
           ${formatCategories(contact)}
           ${formatAddresses(contact)}
           ${formatEmails(contact)}
+          ${formatNote(contact)}
           ${formatId(contact)}
         </div>
       </div>
@@ -108,6 +109,18 @@ const formatNicknames = (contact) => {
         <div class="nicknames">
           <h2>Mote</h2>
           ${result}
+        </div>
+        `
+}
+
+const formatNote = (contact) => {
+    if (typeof contact.note === "undefined") {
+        return '';
+    }
+    return `
+        <div class="note">
+          <h2>Nota</h2>
+          <p>${contact.note}</p>
         </div>
         `
 }
