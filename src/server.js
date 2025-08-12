@@ -37,6 +37,7 @@ const formatContacts = (contacts) => {
           ${formatNicknames(contact)}
           ${formatPhones(contact)}
           ${formatAddresses(contact)}
+          ${formatCategories(contact)}
           ${formatId(contact)}
         </div>
       </div>
@@ -53,6 +54,19 @@ const formatAddresses = (contact) => {
     return `
         <div class="addresses">
           <h2>Dirección</h2>
+          ${result}
+        </div>
+        `
+}
+
+const formatCategories = (contact) => {
+    if (typeof contact.categories === "undefined") {
+        return "";
+    }
+    const result = contact.categories.map(category => `<div class="category"><p>${category}</p></div>`).join('');
+    return `
+        <div class="category">
+          <h2>Categoría</h2>
           ${result}
         </div>
         `
