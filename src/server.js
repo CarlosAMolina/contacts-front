@@ -50,16 +50,13 @@ const formatContacts = (contacts) => {
 }
 
 const formatAddresses = (contact) => {
-    if (typeof contact.addresses === "undefined") {
-        return "";
+    const config = {
+        values: contact.addresses,
+        tagSection: "addresses",
+        tagValue: "address",
+        title: "Dirección",
     }
-    const result = contact.addresses.map(address => `<div class="address"><p>${address}</p></div>`).join('');
-    return `
-        <div class="addresses">
-          <h2>Dirección</h2>
-          ${result}
-        </div>
-        `
+    return formatArray(config);
 }
 
 // config = {
