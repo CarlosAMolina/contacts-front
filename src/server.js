@@ -33,8 +33,8 @@ const formatContacts = (contacts) => {
         return `
       <div class="contact">
         ${formatName(contact)}
-        ${formatNicknames(contact)}
         <div class="data">
+          ${formatNicknames(contact)}
           ${formatPhones(contact)}
         </div>
       </div>
@@ -51,7 +51,7 @@ const formatNicknames = (contact) => {
     if (typeof contact.nicknames === "undefined") {
         return "";
     }
-    const result = contact.nicknames.map(nickname => `<div class="nickname">${nickname}</div>`).join('');
+    const result = contact.nicknames.map(nickname => `<div class="nickname"><p>${nickname}</p></div>`).join('');
     return `
         <div class="nicknames">
           <h2>Mote</h2>
@@ -65,7 +65,7 @@ const formatPhones = (contact) => {
         return '';
     }
     const result = contact.phones.map(phone =>
-        typeof phone.description === "undefined" ? `<div class="phone"> ${phone.number} </div>` : `<div class="phone"> ${phone.number} ${phone.description} </div>`
+        typeof phone.description === "undefined" ? `<div class="phone">${phone.number}</div>` : `<div class="phone"><p>${phone.number} ${phone.description}</p></div>`
     ).join('');
     return `
         <div class="phones">
