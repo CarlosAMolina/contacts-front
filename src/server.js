@@ -36,11 +36,20 @@ const formatContacts = (contacts) => {
         <div class="data">
           ${formatNicknames(contact)}
           ${formatPhones(contact)}
+          ${formatId(contact)}
         </div>
       </div>
       <hr/>
     `
     }).join('\n')
+}
+
+const formatId = (contact) => {
+    return `
+        <div class="id">
+          <p>ID: ${contact.id}</p>
+        </div>
+        `
 }
 
 const formatName = (contact) => {
