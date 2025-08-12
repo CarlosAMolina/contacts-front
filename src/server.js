@@ -46,10 +46,12 @@ const formatPhones = (contact) => {
         return '';
     }
     const result = contact.phones.map(phone =>
-        phone.description === null ? phone.number : `${phone.number} ${phone.description}`
-    ).join('<br>');
+        phone.description === null ? `<div class="phone"> ${phone.number} </div>` : `<div class="phone"> ${phone.number} ${phone.description} </div>`
+    ).join('');
     return `
-        <h2>Teléfono</h2>
-        <p>${result}</p>
+        <div class="phones">
+          <h2>Teléfono</h2>
+          ${result}
+        </div>
     `
 }
