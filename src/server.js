@@ -115,16 +115,13 @@ const formatDiscord = (contact) => {
 }
 
 const formatEmails = (contact) => {
-    if (typeof contact.emails === "undefined") {
-        return "";
+    const config = {
+        values: contact.emails,
+        tagSection: "emails",
+        tagValue: "email",
+        title: "Email",
     }
-    const result = contact.emails.map(email => formatValue(email, "email")).join('');
-    return `
-        <div class="emails">
-          <h2>Email</h2>
-          ${result}
-        </div>
-        `
+    return formatArray(config);
 }
 
 const formatId = (contact) => {
