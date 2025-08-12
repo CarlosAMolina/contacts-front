@@ -39,6 +39,7 @@ const formatContacts = (contacts) => {
           ${formatCategories(contact)}
           ${formatAddresses(contact)}
           ${formatEmails(contact)}
+          ${formatSocialNetwork(contact)}
           ${formatNote(contact)}
           ${formatId(contact)}
         </div>
@@ -74,11 +75,37 @@ const formatCategories = (contact) => {
         `
 }
 
+const formatDiscord = (contact) => {
+    if (typeof contact.socialNetwork.discordAccounts === "undefined") {
+        return "";
+    }
+    console.log(contact.socialNetwork.discordAccounts)
+    const result = contact.socialNetwork.discordAccounts.map(discord =>
+        `
+        <div class="discord">
+        ${typeof discord.alias === "undefined" ? "" : `<p>Alias</p>${formatValue(discord.alias, "alias")}`}
+        ${typeof discord.discriminator === "undefined" ? "" : `<p>Discriminator</p>${formatValue(discord.discriminator, "discriminator")}`}
+        ${typeof discord.globalName === "undefined" ? "" : `<p>Global name</p>${formatValue(discord.globalName, "global_name")}`}
+        ${typeof discord.legacyUserName === "undefined" ? "" : `<p>Legacy user name</p>${formatValue(discord.legacyUserName, "legacy_user_name")}`}
+        <p>User name</p>
+        ${formatValue(discord.userName, "user_name")}
+        </div>
+        `
+    ).join('<br>');
+    console.log(result)
+    return `
+        <div class="discord_accounts">
+          <h2>Discord</h2>
+          ${result}
+        </div>
+        `
+}
+
 const formatEmails = (contact) => {
     if (typeof contact.emails === "undefined") {
         return "";
     }
-    const result = contact.emails.map(email => `<div class="email"><p>${email}</p></div>`).join('');
+    const result = contact.emails.map(email => formatValue(email, "email")).join('');
     return `
         <div class="emails">
           <h2>Email</h2>
@@ -104,7 +131,7 @@ const formatNicknames = (contact) => {
     if (typeof contact.nicknames === "undefined") {
         return "";
     }
-    const result = contact.nicknames.map(nickname => `<div class="nickname"><p>${nickname}</p></div>`).join('');
+    const result = contact.nicknames.map(nickname => formatValue(nickname, "nickname")).join('');
     return `
         <div class="nicknames">
           <h2>Mote</h2>
@@ -130,7 +157,7 @@ const formatPhones = (contact) => {
         return '';
     }
     const result = contact.phones.map(phone =>
-        typeof phone.description === "undefined" ? `<div class="phone">${phone.number}</div>` : `<div class="phone"><p>${phone.number} ${phone.description}</p></div>`
+        typeof phone.description === "undefined" ? formatValue(phone.number, "phone") : formatValue(`${phone.number} ${phone.description}`, "phone")
     ).join('');
     return `
         <div class="phones">
@@ -138,4 +165,19 @@ const formatPhones = (contact) => {
           ${result}
         </div>
     `
+}
+
+const formatSocialNetwork = (contact) => {
+    if (typeof contact.socialNetwork === "undefined") {
+        return '';
+    }
+    return `
+        <div class="social_network">
+          ${formatDiscord(contact)}
+        </div>
+    `
+}
+
+const formatValue = (value, tag) => {
+    return `<div class="${tag}"><p>${value}</p></div>`;
 }
