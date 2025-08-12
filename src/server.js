@@ -32,7 +32,7 @@ const formatContacts = (contacts) => {
     return contacts.map(contact => {
         return `
       <div class="contact">
-        <p>${contact.name}</p>
+        <h1>${contact.name}</h1>
         <div class="data">
           ${formatPhones(contact)}
         </div>
@@ -40,7 +40,6 @@ const formatContacts = (contacts) => {
     `
     }).join('\n')
 }
-
 
 const formatPhones = (contact) => {
     if (contact.phones === null) {
@@ -50,9 +49,7 @@ const formatPhones = (contact) => {
         phone.description === null ? phone.number : `${phone.number} ${phone.description}`
     ).join('<br>');
     return `
-        <div class="title">
-          <p>Teléfono</p>
-        </div>
+        <h2>Teléfono</h2>
         <p>${result}</p>
     `
 }
