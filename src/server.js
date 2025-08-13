@@ -134,6 +134,16 @@ const formatFacebook = (contact) => {
     return formatArray(config);
 }
 
+const formatGithub = (contact) => {
+    const config = {
+        values: contact.socialNetwork.githubAccounts,
+        tagSection: "github_accounts",
+        tagValue: "github",
+        title: "GitHub",
+    }
+    return formatArray(config);
+}
+
 const formatId = (contact) => {
     return `
         <div class="id">
@@ -192,6 +202,7 @@ const formatSocialNetwork = (contact) => {
         <div class="social_network">
           ${formatDiscord(contact)}
           ${formatFacebook(contact)}
+          ${formatGithub(contact)}
         </div>
     `
 }
