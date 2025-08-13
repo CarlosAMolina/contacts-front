@@ -138,16 +138,13 @@ const formatName = (contact) => {
 }
 
 const formatNicknames = (contact) => {
-    if (typeof contact.nicknames === "undefined") {
-        return "";
+    const config = {
+        values: contact.nicknames,
+        tagSection: "nicknames",
+        tagValue: "nickname",
+        title: "Mote",
     }
-    const result = contact.nicknames.map(nickname => formatValue(nickname, "nickname")).join('');
-    return `
-        <div class="nicknames">
-          <h2>Mote</h2>
-          ${result}
-        </div>
-        `
+    return formatArray(config);
 }
 
 const formatNote = (contact) => {
