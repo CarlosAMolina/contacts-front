@@ -124,6 +124,16 @@ const formatEmails = (contact) => {
     return formatArray(config);
 }
 
+const formatFacebook = (contact) => {
+    const config = {
+        values: contact.socialNetwork.facebookAccounts,
+        tagSection: "facebook_accounts",
+        tagValue: "facebook",
+        title: "Facebook",
+    }
+    return formatArray(config);
+}
+
 const formatId = (contact) => {
     return `
         <div class="id">
@@ -181,6 +191,7 @@ const formatSocialNetwork = (contact) => {
     return `
         <div class="social_network">
           ${formatDiscord(contact)}
+          ${formatFacebook(contact)}
         </div>
     `
 }
