@@ -46,7 +46,6 @@ const formatContacts = (contacts) => {
           ${formatId(contact)}
         </div>
       </div>
-      <hr/>
     `
     }).join('\n')
 }
