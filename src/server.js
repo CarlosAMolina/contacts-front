@@ -54,7 +54,6 @@ const formatAddresses = (contact) => {
     const config = {
         values: contact.addresses,
         tagSection: "addresses",
-        tagValue: "address",
         title: "Dirección",
     }
     return formatArray(config);
@@ -63,7 +62,6 @@ const formatAddresses = (contact) => {
 // config = {
 //     values: [],
 //     tagSection: "",
-//     tagValue: "",
 //     title: "",
 // }
 const formatArray = (config) => {
@@ -74,7 +72,7 @@ const formatArray = (config) => {
     return `
         <div class=${config.tagSection}>
           <h3>${config.title}</h3>
-          <ul class=${config.tagValue}>
+          <ul>
             ${result}
           </ul>
         </div>
@@ -85,7 +83,6 @@ const formatCategories = (contact) => {
     const config = {
         values: contact.categories,
         tagSection: "categories",
-        tagValue: "category",
         title: "Categoría",
     }
     return formatArray(config);
@@ -120,7 +117,6 @@ const formatEmails = (contact) => {
     const config = {
         values: contact.emails,
         tagSection: "emails",
-        tagValue: "email",
         title: "Email",
     }
     return formatArray(config);
@@ -130,7 +126,6 @@ const formatFacebook = (contact) => {
     const config = {
         values: contact.socialNetwork.facebookAccounts,
         tagSection: "facebook_accounts",
-        tagValue: "facebook",
         title: "Facebook",
     }
     return formatArray(config);
@@ -140,7 +135,6 @@ const formatGithub = (contact) => {
     const config = {
         values: contact.socialNetwork.githubAccounts,
         tagSection: "github_accounts",
-        tagValue: "github",
         title: "GitHub",
     }
     return formatArray(config);
@@ -168,7 +162,6 @@ const formatInstagram = (contact) => {
     const config = {
         values: contact.socialNetwork.instagramAccounts,
         tagSection: "instagram_accounts",
-        tagValue: "instagram",
         title: "Instagram",
     }
     return formatArray(config);
@@ -178,7 +171,6 @@ const formatLinkedin = (contact) => {
     const config = {
         values: contact.socialNetwork.linkedinAccounts,
         tagSection: "linkedin_accounts",
-        tagValue: "linkedin",
         title: "Linkedin",
     }
     return formatArray(config);
@@ -192,7 +184,6 @@ const formatNicknames = (contact) => {
     const config = {
         values: contact.nicknames,
         tagSection: "nicknames",
-        tagValue: "nickname",
         title: "Mote",
     }
     return formatArray(config);
@@ -248,7 +239,6 @@ const formatTelegram = (contact) => {
     const config = {
         values: contact.socialNetwork.telegramAccounts,
         tagSection: "telegram_accounts",
-        tagValue: "telegram",
         title: "Telegram",
     }
     return formatArray(config);
@@ -258,7 +248,6 @@ const formatTiktok = (contact) => {
     const config = {
         values: contact.socialNetwork.tiktokAccounts,
         tagSection: "tiktok_accounts",
-        tagValue: "tiktok",
         title: "Tiktok",
     }
     return formatArray(config);
@@ -268,7 +257,6 @@ const formatTwitter = (contact) => {
     const config = {
         values: contact.socialNetwork.twitterAccounts,
         tagSection: "twitter_accounts",
-        tagValue: "twitter",
         title: "Twitter",
     }
     return formatArray(config);
@@ -278,7 +266,6 @@ const formatUrls = (contact) => {
     const config = {
         values: contact.urls,
         tagSection: "urls",
-        tagValue: "url",
         title: "Url",
     }
     return formatArray(config);
