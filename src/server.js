@@ -33,6 +33,7 @@ const formatContacts = (contacts) => {
         return `
       <div class="contact">
         ${formatName(contact)}
+        ${formatImage(contact)}
         <div class="data">
           ${formatNicknames(contact)}
           ${formatPhones(contact)}
@@ -148,6 +149,14 @@ const formatId = (contact) => {
         <div class="id">
           <h2>ID</h2>
           <p>${contact.id}</p>
+        </div>
+        `
+}
+
+const formatImage = (contact) => {
+    return `
+        <div class="image">
+          <img src="file:///tmp/${contact.id}.png" />
         </div>
         `
 }
