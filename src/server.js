@@ -39,6 +39,7 @@ const formatContacts = (contacts) => {
           ${formatCategories(contact)}
           ${formatAddresses(contact)}
           ${formatEmails(contact)}
+          ${formatUrls(contact)}
           ${formatSocialNetwork(contact)}
           ${formatNote(contact)}
           ${formatId(contact)}
@@ -257,6 +258,16 @@ const formatTwitter = (contact) => {
         tagSection: "twitter_accounts",
         tagValue: "twitter",
         title: "Twitter",
+    }
+    return formatArray(config);
+}
+
+const formatUrls = (contact) => {
+    const config = {
+        values: contact.urls,
+        tagSection: "urls",
+        tagValue: "url",
+        title: "Url",
     }
     return formatArray(config);
 }
