@@ -70,11 +70,13 @@ const formatArray = (config) => {
     if (typeof config.values === "undefined") {
         return "";
     }
-    const result = config.values.map(value => `<div class=${config.tagValue}><p>${value}</p></div>`).join('');
+    const result = config.values.map(value => `<li>${value}</li>`).join('\n');
     return `
         <div class=${config.tagSection}>
           <h3>${config.title}</h3>
-          ${result}
+          <ul class=${config.tagValue}>
+            ${result}
+          </ul>
         </div>
         `
 }
