@@ -106,7 +106,7 @@ const formatDiscord = (contact) => {
         `
     ).join('');
     return `
-        <div class="discord_accounts">
+        <div class="discord-accounts">
           <h3>Discord</h3>
           ${result}
         </div>
@@ -125,7 +125,7 @@ const formatEmails = (contact) => {
 const formatFacebook = (contact) => {
     const config = {
         values: contact.socialNetwork.facebookAccounts,
-        tag: "facebook_accounts",
+        tag: "facebook-accounts",
         title: "Facebook",
     }
     return formatArray(config);
@@ -134,7 +134,7 @@ const formatFacebook = (contact) => {
 const formatGithub = (contact) => {
     const config = {
         values: contact.socialNetwork.githubAccounts,
-        tag: "github_accounts",
+        tag: "github-accounts",
         title: "GitHub",
     }
     return formatArray(config);
@@ -150,10 +150,10 @@ const formatId = (contact) => {
 }
 
 const formatImage = (contact) => {
-    const image_name = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
+    const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
     return `
         <div class="image">
-          <img src="./images/${image_name}.jpg" width="200" height="200"/>
+          <img src="./images/${imageName}.jpg" width="200" height="200"/>
         </div>
         `
 }
@@ -161,7 +161,7 @@ const formatImage = (contact) => {
 const formatInstagram = (contact) => {
     const config = {
         values: contact.socialNetwork.instagramAccounts,
-        tag: "instagram_accounts",
+        tag: "instagram-accounts",
         title: "Instagram",
     }
     return formatArray(config);
@@ -170,7 +170,7 @@ const formatInstagram = (contact) => {
 const formatLinkedin = (contact) => {
     const config = {
         values: contact.socialNetwork.linkedinAccounts,
-        tag: "linkedin_accounts",
+        tag: "linkedin-accounts",
         title: "Linkedin",
     }
     return formatArray(config);
@@ -221,7 +221,7 @@ const formatSocialNetwork = (contact) => {
         return '';
     }
     return `
-        <div class="social_network">
+        <div class="social-network">
           ${formatDiscord(contact)}
           ${formatFacebook(contact)}
           ${formatGithub(contact)}
@@ -238,7 +238,7 @@ const formatSocialNetwork = (contact) => {
 const formatTelegram = (contact) => {
     const config = {
         values: contact.socialNetwork.telegramAccounts,
-        tag: "telegram_accounts",
+        tag: "telegram-accounts",
         title: "Telegram",
     }
     return formatArray(config);
@@ -247,7 +247,7 @@ const formatTelegram = (contact) => {
 const formatTiktok = (contact) => {
     const config = {
         values: contact.socialNetwork.tiktokAccounts,
-        tag: "tiktok_accounts",
+        tag: "tiktok-accounts",
         title: "Tiktok",
     }
     return formatArray(config);
@@ -256,7 +256,7 @@ const formatTiktok = (contact) => {
 const formatTwitter = (contact) => {
     const config = {
         values: contact.socialNetwork.twitterAccounts,
-        tag: "twitter_accounts",
+        tag: "twitter-accounts",
         title: "Twitter",
     }
     return formatArray(config);
@@ -282,13 +282,13 @@ const formatWallapop = (contact) => {
     const result = contact.socialNetwork.wallapopAccounts.map(wallapop =>
         `
         <div class="wallapop">
-        <p>URL</p>${formatValue(wallapop.url, "wallapop_url")}
-        ${typeof wallapop.note === "undefined" ? "" : `<p>Nota</p>${formatValue(wallapop.note, "wallapop_note")}`}
+        <p>URL</p>${formatValue(wallapop.url, "wallapop-url")}
+        ${typeof wallapop.note === "undefined" ? "" : `<p>Nota</p>${formatValue(wallapop.note, "wallapop-note")}`}
         </div>
         `
     ).join('<br>');
     return `
-        <div class="wallapop_accounts">
+        <div class="wallapop-accounts">
           <h3>Wallapop</h3>
           ${result}
         </div>
