@@ -154,9 +154,10 @@ const formatId = (contact) => {
 }
 
 const formatImage = (contact) => {
+    const image_name = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
     return `
         <div class="image">
-          <img src="file:///tmp/${contact.id}.png" />
+          <img src="./images/${image_name}.jpg" />
         </div>
         `
 }
@@ -182,7 +183,7 @@ const formatLinkedin = (contact) => {
 }
 
 const formatName = (contact) => {
-    return typeof contact.surname === "undefined" ? `<h1>${contact.name}</h1>` : `<h1>${contact.name} ${contact.surname}</h1>`;
+    return `<h1>${getNameAndSurname(contact)}</h1>`;
 }
 
 const formatNicknames = (contact) => {
@@ -303,4 +304,8 @@ const formatWallapop = (contact) => {
           ${result}
         </div>
         `
+}
+
+const getNameAndSurname = (contact) => {
+    return typeof contact.surname === "undefined" ? contact.name : `${contact.name} ${contact.surname}`;
 }
