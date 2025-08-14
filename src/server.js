@@ -153,6 +153,26 @@ const formatId = (contact) => {
         `
 }
 
+const formatInstagram = (contact) => {
+    const config = {
+        values: contact.socialNetwork.instagramAccounts,
+        tagSection: "instagram_accounts",
+        tagValue: "instagram",
+        title: "Instagram",
+    }
+    return formatArray(config);
+}
+
+const formatLinkedin = (contact) => {
+    const config = {
+        values: contact.socialNetwork.linkedinAccounts,
+        tagSection: "linkedin_accounts",
+        tagValue: "linkedin",
+        title: "Linkedin",
+    }
+    return formatArray(config);
+}
+
 const formatName = (contact) => {
     return typeof contact.surname === "undefined" ? `<h1>${contact.name}</h1>` : `<h1>${contact.name} ${contact.surname}</h1>`;
 }
@@ -203,8 +223,43 @@ const formatSocialNetwork = (contact) => {
           ${formatDiscord(contact)}
           ${formatFacebook(contact)}
           ${formatGithub(contact)}
+          ${formatInstagram(contact)}
+          ${formatLinkedin(contact)}
+          ${formatTelegram(contact)}
+          ${formatTiktok(contact)}
+          ${formatTwitter(contact)}
         </div>
     `
+}
+
+const formatTelegram = (contact) => {
+    const config = {
+        values: contact.socialNetwork.telegramAccounts,
+        tagSection: "telegram_accounts",
+        tagValue: "telegram",
+        title: "Telegram",
+    }
+    return formatArray(config);
+}
+
+const formatTiktok = (contact) => {
+    const config = {
+        values: contact.socialNetwork.tiktokAccounts,
+        tagSection: "tiktok_accounts",
+        tagValue: "tiktok",
+        title: "Tiktok",
+    }
+    return formatArray(config);
+}
+
+const formatTwitter = (contact) => {
+    const config = {
+        values: contact.socialNetwork.twitterAccounts,
+        tagSection: "twitter_accounts",
+        tagValue: "twitter",
+        title: "Twitter",
+    }
+    return formatArray(config);
 }
 
 const formatValue = (value, tag) => {
