@@ -98,15 +98,16 @@ const formatDiscord = (contact) => {
     const result = contact.socialNetwork.discordAccounts.map(discord =>
         `
         <div class="discord">
-        ${typeof discord.alias === "undefined" ? "" : `<p>Alias</p>${formatValue(discord.alias, "alias")}`}
-        ${typeof discord.discriminator === "undefined" ? "" : `<p>Discriminator</p>${formatValue(discord.discriminator, "discriminator")}`}
-        ${typeof discord.globalName === "undefined" ? "" : `<p>Global name</p>${formatValue(discord.globalName, "global_name")}`}
-        ${typeof discord.legacyUserName === "undefined" ? "" : `<p>Legacy user name</p>${formatValue(discord.legacyUserName, "legacy_user_name")}`}
-        <p>User name</p>
-        ${formatValue(discord.userName, "user_name")}
+        <ul>
+          ${typeof discord.alias === "undefined" ? "" : `<li>Alias: ${discord.alias}</li>`}
+          ${typeof discord.discriminator === "undefined" ? "" : `<li>Discriminator: ${discord.discriminator}</li>`}
+          ${typeof discord.globalName === "undefined" ? "" : `<li>Global name: ${discord.globalName}</li>`}
+          ${typeof discord.legacyUserName === "undefined" ? "" : `<li>Legacy user name: ${discord.legacyUserName}</li>`}
+          <li>User name: ${discord.userName}</li>
+        </ul>
         </div>
         `
-    ).join('<br>');
+    ).join('');
     return `
         <div class="discord_accounts">
           <h3>Discord</h3>
