@@ -157,7 +157,7 @@ const formatImage = (contact) => {
     const image_name = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
     return `
         <div class="image">
-          <img src="./images/${image_name}.jpg" />
+          <img src="./images/${image_name}.jpg" width="200" height="200"/>
         </div>
         `
 }
