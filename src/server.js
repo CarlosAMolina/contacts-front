@@ -74,7 +74,7 @@ const formatArray = (config) => {
     const result = config.values.map(value => `<div class=${config.tagValue}><p>${value}</p></div>`).join('');
     return `
         <div class=${config.tagSection}>
-          <h2>${config.title}</h2>
+          <h3>${config.title}</h3>
           ${result}
         </div>
         `
@@ -108,7 +108,7 @@ const formatDiscord = (contact) => {
     ).join('<br>');
     return `
         <div class="discord_accounts">
-          <h2>Discord</h2>
+          <h3>Discord</h3>
           ${result}
         </div>
         `
@@ -147,7 +147,7 @@ const formatGithub = (contact) => {
 const formatId = (contact) => {
     return `
         <div class="id">
-          <h2>ID</h2>
+          <h3>ID</h3>
           <p>${contact.id}</p>
         </div>
         `
@@ -183,7 +183,7 @@ const formatLinkedin = (contact) => {
 }
 
 const formatName = (contact) => {
-    return `<h1>${getNameAndSurname(contact)}</h1>`;
+    return `<h2>${getNameAndSurname(contact)}</h2>`;
 }
 
 const formatNicknames = (contact) => {
@@ -202,7 +202,7 @@ const formatNote = (contact) => {
     }
     return `
         <div class="note">
-          <h2>Nota</h2>
+          <h3>Nota</h3>
           <p>${contact.note}</p>
         </div>
         `
@@ -217,7 +217,7 @@ const formatPhones = (contact) => {
     ).join('');
     return `
         <div class="phones">
-          <h2>Teléfono</h2>
+          <h3>Teléfono</h3>
           ${result}
         </div>
     `
@@ -300,7 +300,7 @@ const formatWallapop = (contact) => {
     ).join('<br>');
     return `
         <div class="wallapop_accounts">
-          <h2>Wallapop</h2>
+          <h3>Wallapop</h3>
           ${result}
         </div>
         `
