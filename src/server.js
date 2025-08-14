@@ -53,7 +53,7 @@ const formatContacts = (contacts) => {
 const formatAddresses = (contact) => {
     const config = {
         values: contact.addresses,
-        tagSection: "addresses",
+        tag: "addresses",
         title: "Dirección",
     }
     return formatArray(config);
@@ -61,7 +61,7 @@ const formatAddresses = (contact) => {
 
 // config = {
 //     values: [],
-//     tagSection: "",
+//     tag: "",
 //     title: "",
 // }
 const formatArray = (config) => {
@@ -70,7 +70,7 @@ const formatArray = (config) => {
     }
     const result = config.values.map(value => `<li>${value}</li>`).join('\n');
     return `
-        <div class=${config.tagSection}>
+        <div class=${config.tag}>
           <h3>${config.title}</h3>
           <ul>
             ${result}
@@ -82,7 +82,7 @@ const formatArray = (config) => {
 const formatCategories = (contact) => {
     const config = {
         values: contact.categories,
-        tagSection: "categories",
+        tag: "categories",
         title: "Categoría",
     }
     return formatArray(config);
@@ -116,7 +116,7 @@ const formatDiscord = (contact) => {
 const formatEmails = (contact) => {
     const config = {
         values: contact.emails,
-        tagSection: "emails",
+        tag: "emails",
         title: "Email",
     }
     return formatArray(config);
@@ -125,7 +125,7 @@ const formatEmails = (contact) => {
 const formatFacebook = (contact) => {
     const config = {
         values: contact.socialNetwork.facebookAccounts,
-        tagSection: "facebook_accounts",
+        tag: "facebook_accounts",
         title: "Facebook",
     }
     return formatArray(config);
@@ -134,7 +134,7 @@ const formatFacebook = (contact) => {
 const formatGithub = (contact) => {
     const config = {
         values: contact.socialNetwork.githubAccounts,
-        tagSection: "github_accounts",
+        tag: "github_accounts",
         title: "GitHub",
     }
     return formatArray(config);
@@ -161,7 +161,7 @@ const formatImage = (contact) => {
 const formatInstagram = (contact) => {
     const config = {
         values: contact.socialNetwork.instagramAccounts,
-        tagSection: "instagram_accounts",
+        tag: "instagram_accounts",
         title: "Instagram",
     }
     return formatArray(config);
@@ -170,7 +170,7 @@ const formatInstagram = (contact) => {
 const formatLinkedin = (contact) => {
     const config = {
         values: contact.socialNetwork.linkedinAccounts,
-        tagSection: "linkedin_accounts",
+        tag: "linkedin_accounts",
         title: "Linkedin",
     }
     return formatArray(config);
@@ -183,7 +183,7 @@ const formatName = (contact) => {
 const formatNicknames = (contact) => {
     const config = {
         values: contact.nicknames,
-        tagSection: "nicknames",
+        tag: "nicknames",
         title: "Mote",
     }
     return formatArray(config);
@@ -238,7 +238,7 @@ const formatSocialNetwork = (contact) => {
 const formatTelegram = (contact) => {
     const config = {
         values: contact.socialNetwork.telegramAccounts,
-        tagSection: "telegram_accounts",
+        tag: "telegram_accounts",
         title: "Telegram",
     }
     return formatArray(config);
@@ -247,7 +247,7 @@ const formatTelegram = (contact) => {
 const formatTiktok = (contact) => {
     const config = {
         values: contact.socialNetwork.tiktokAccounts,
-        tagSection: "tiktok_accounts",
+        tag: "tiktok_accounts",
         title: "Tiktok",
     }
     return formatArray(config);
@@ -256,7 +256,7 @@ const formatTiktok = (contact) => {
 const formatTwitter = (contact) => {
     const config = {
         values: contact.socialNetwork.twitterAccounts,
-        tagSection: "twitter_accounts",
+        tag: "twitter_accounts",
         title: "Twitter",
     }
     return formatArray(config);
@@ -265,7 +265,7 @@ const formatTwitter = (contact) => {
 const formatUrls = (contact) => {
     const config = {
         values: contact.urls,
-        tagSection: "urls",
+        tag: "urls",
         title: "Url",
     }
     return formatArray(config);
