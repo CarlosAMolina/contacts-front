@@ -7,6 +7,7 @@
     "scripts": {
         "lint": "npx eslint .",
         "lint:fix": "npx eslint --fix .",
+        "server": "npx http-server",
         "start": "node index.js",
         "startDev": "nodemon -e js",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
@@ -23,7 +24,8 @@
     },
     "homepage": "https://github.com/CarlosAMolina/contacts-front#readme",
     "dependencies": {
-        "graphql-request": "^7.2.0"
+        "graphql-request": "^7.2.0",
+        "http-server": "^14.1.1"
     },
     "devDependencies": {
         "@eslint/js": "^9.32.0",
