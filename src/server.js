@@ -143,8 +143,7 @@ const formatGithub = (contact) => {
 const formatId = (contact) => {
     return `
         <div class="id">
-          <h3>ID</h3>
-          <p>${contact.id}</p>
+          <span class="title">ID</span>: <span>${contact.id}</span>
         </div>
         `
 }
