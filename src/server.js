@@ -92,7 +92,6 @@ const formatDiscord = (contact) => {
     if (typeof contact.socialNetwork.discordAccounts === "undefined") {
         return "";
     }
-    console.log(contact.socialNetwork.discordAccounts)
     const result = contact.socialNetwork.discordAccounts.map(discord =>
         `
         <div class="discord">
@@ -105,7 +104,6 @@ const formatDiscord = (contact) => {
         </div>
         `
     ).join('<br>');
-    console.log(result)
     return `
         <div class="discord_accounts">
           <h2>Discord</h2>
@@ -228,6 +226,7 @@ const formatSocialNetwork = (contact) => {
           ${formatTelegram(contact)}
           ${formatTiktok(contact)}
           ${formatTwitter(contact)}
+          ${formatWallapop(contact)}
         </div>
     `
 }
@@ -264,4 +263,24 @@ const formatTwitter = (contact) => {
 
 const formatValue = (value, tag) => {
     return `<div class="${tag}"><p>${value}</p></div>`;
+}
+
+const formatWallapop = (contact) => {
+    if (typeof contact.socialNetwork.wallapopAccounts === "undefined") {
+        return "";
+    }
+    const result = contact.socialNetwork.wallapopAccounts.map(wallapop =>
+        `
+        <div class="wallapop">
+        <p>URL</p>${formatValue(wallapop.url, "wallapop_url")}
+        ${typeof wallapop.note === "undefined" ? "" : `<p>Nota</p>${formatValue(wallapop.note, "wallapop_note")}`}
+        </div>
+        `
+    ).join('<br>');
+    return `
+        <div class="wallapop_accounts">
+          <h2>Wallapop</h2>
+          ${result}
+        </div>
+        `
 }
