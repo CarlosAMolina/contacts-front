@@ -205,12 +205,14 @@ const formatPhones = (contact) => {
         return '';
     }
     const result = contact.phones.map(phone =>
-        typeof phone.description === "undefined" ? formatValue(phone.number, "phone") : formatValue(`${phone.number} ${phone.description}`, "phone")
+        typeof phone.description === "undefined" ? `<li>${phone.number}</li>` : `<li>${phone.description}: ${phone.number}</li>`
     ).join('');
     return `
         <div class="phones">
           <h3>Teléfono</h3>
-          ${result}
+          <ul>
+            ${result}
+          </ul>
         </div>
     `
 }
