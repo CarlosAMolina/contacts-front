@@ -154,7 +154,6 @@ const formatId = (contact) => {
 
 const formatImage = async (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    //return '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg==">'
     const base64 = await getBase64FromImage(`/tmp/${imageName}.jpg`);
     return `<img src="data:image/png;base64,${base64}">`
 }
@@ -300,6 +299,11 @@ const getNameAndSurname = (contact) => {
 }
 
 const getBase64FromImage = async (imagePathName) => {
-    const fileContent = await fs.readFile(imagePathName)
-    return Buffer.from(fileContent ).toString('base64');
+    try {
+        const fileContent = await fs.readFile(imagePathName)
+        return Buffer.from(fileContent ).toString('base64');
+    } catch (err) {
+        const emptyImageBase64 = 'iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg';
+        return emptyImageBase64;
+    }
 }
