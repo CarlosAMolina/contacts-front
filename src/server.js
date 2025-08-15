@@ -150,9 +150,8 @@ const formatId = (contact) => {
 
 const formatImage = (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    return `
-        <img src="./images/${imageName}.jpg" />
-        `
+    //return `<img src="./images/${imageName}.jpg" />`
+    return '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg==">'
 }
 
 const formatInstagram = (contact) => {
