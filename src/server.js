@@ -16,7 +16,8 @@ const createServer = () => {
     return http.createServer(async (req, res) => {
         const HTML_PATH = new URL('./template.html', import.meta.url).pathname;
         const template = await fs.readFile(HTML_PATH, 'utf-8');
-        const html = interpolate(template, {contacts: formatContacts(contacts)});
+        const contactsHtml = await formatContacts(contacts);
+        const html = interpolate(template, {contacts: contactsHtml});
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.end(html);
     });
@@ -28,11 +29,12 @@ const interpolate = (html, data) => {
     });
 }
 
-const formatContacts = (contacts) => {
-    return contacts.map(contact => {
+const formatContacts = async (contacts) => {
+    const contactPromises = contacts.map( async contact => {
+        const imageHtml = await formatImage(contact);
         return `
       <div class="contact">
-        ${formatImage(contact)}
+        ${imageHtml}
         <div class="contact-info">
           ${formatName(contact)}
           ${formatNicknames(contact)}
@@ -47,7 +49,9 @@ const formatContacts = (contacts) => {
         </div>
       </div>
     `
-    }).join('')
+    });
+    const htmlArray = await Promise.all(contactPromises);
+    return htmlArray.join('');
 }
 
 const formatAddresses = (contact) => {
@@ -148,10 +152,11 @@ const formatId = (contact) => {
         `
 }
 
-const formatImage = (contact) => {
+const formatImage = async (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    //return `<img src="./images/${imageName}.jpg" />`
-    return '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg==">'
+    //return '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg==">'
+    const base64 = await getBase64FromImage(`/tmp/${imageName}.jpg`);
+    return `<img src="data:image/png;base64,${base64}">`
 }
 
 const formatInstagram = (contact) => {
@@ -292,4 +297,9 @@ const formatWallapop = (contact) => {
 
 const getNameAndSurname = (contact) => {
     return typeof contact.surname === "undefined" ? contact.name : `${contact.name} ${contact.surname}`;
+}
+
+const getBase64FromImage = async (imagePathName) => {
+    const fileContent = await fs.readFile(imagePathName)
+    return Buffer.from(fileContent ).toString('base64');
 }
