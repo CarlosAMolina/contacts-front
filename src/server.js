@@ -47,7 +47,7 @@ const formatContacts = (contacts) => {
         </div>
       </div>
     `
-    }).join('\n')
+    }).join('')
 }
 
 const formatAddresses = (contact) => {
@@ -272,10 +272,6 @@ const formatUrls = (contact) => {
     return formatArray(config);
 }
 
-const formatValue = (value, tag) => {
-    return `<div class="${tag}"><p>${value}</p></div>`;
-}
-
 const formatWallapop = (contact) => {
     if (typeof contact.socialNetwork.wallapopAccounts === "undefined") {
         return "";
@@ -283,11 +279,13 @@ const formatWallapop = (contact) => {
     const result = contact.socialNetwork.wallapopAccounts.map(wallapop =>
         `
         <div class="wallapop">
-        <p>URL</p>${formatValue(wallapop.url, "wallapop-url")}
-        ${typeof wallapop.note === "undefined" ? "" : `<p>Nota</p>${formatValue(wallapop.note, "wallapop-note")}`}
+        <ul>
+          <li>URL: ${wallapop.url}</li>
+          ${typeof wallapop.note === "undefined" ? "" : `<li>Nota: ${wallapop.note}</li>`}
+        </ul>
         </div>
         `
-    ).join('<br>');
+    ).join('');
     return `
         <div class="wallapop-accounts">
           <h3>Wallapop</h3>
