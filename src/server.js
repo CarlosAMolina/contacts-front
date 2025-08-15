@@ -32,9 +32,9 @@ const formatContacts = (contacts) => {
     return contacts.map(contact => {
         return `
       <div class="contact">
-        ${formatName(contact)}
         ${formatImage(contact)}
-        <div class="data">
+        <div class="contact-info">
+          ${formatName(contact)}
           ${formatNicknames(contact)}
           ${formatPhones(contact)}
           ${formatCategories(contact)}
@@ -151,9 +151,7 @@ const formatId = (contact) => {
 const formatImage = (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
     return `
-        <div class="image">
-          <img src="./images/${imageName}.jpg" width="200" height="200"/>
-        </div>
+        <img src="./images/${imageName}.jpg" />
         `
 }
 
