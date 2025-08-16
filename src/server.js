@@ -163,7 +163,7 @@ const formatId = (contact) => {
 }
 
 const formatImage = async (contact, images) => {
-    const imagesMatched = images.filter(image => image.startsWith(contact.id));
+    const imagesMatched = images.filter(image => image.startsWith(`${contact.id}-`));
     if (imagesMatched.length === 0) {
         return `
             <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
