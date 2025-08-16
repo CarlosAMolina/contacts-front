@@ -35,19 +35,23 @@ const formatContacts = async (contacts) => {
         const imageHtml = await formatImage(contact);
         return `
       <div class="contact">
-        ${imageHtml}
-        <div class="contact-info">
-          ${formatName(contact)}
-          ${formatNicknames(contact)}
-          ${formatPhones(contact)}
-          ${formatCategories(contact)}
-          ${formatAddresses(contact)}
-          ${formatEmails(contact)}
-          ${formatUrls(contact)}
-          ${formatSocialNetwork(contact)}
-          ${formatId(contact)}
-          ${formatNote(contact)}
+        ${formatName(contact)}
+        <div class="container">
+          <div class="image">
+            ${imageHtml}
+          </div>
+          <div class="contact-info">
+            ${formatNicknames(contact)}
+            ${formatPhones(contact)}
+            ${formatCategories(contact)}
+            ${formatAddresses(contact)}
+            ${formatEmails(contact)}
+            ${formatUrls(contact)}
+            ${formatSocialNetwork(contact)}
+            ${formatId(contact)}
+          </div>
         </div>
+        ${formatNote(contact)}
       </div>
     `
     });
@@ -298,7 +302,7 @@ const getImageHtml = async (imagePathName) => {
     try {
         const fileContent = await fs.readFile(imagePathName)
         const base64 = Buffer.from(fileContent).toString('base64');
-        return `<img src="data:image/png;base64,${base64}">`
+        return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
     } catch (err) {
         return `
         <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
