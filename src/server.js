@@ -51,7 +51,9 @@ const formatContacts = async (contacts) => {
             ${formatId(contact)}
           </div>
         </div>
-        ${formatNote(contact)}
+        <div class="note">
+          ${formatNote(contact)}
+        </div>
       </div>
     `
     });
