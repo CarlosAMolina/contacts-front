@@ -312,18 +312,9 @@ const getImageHtml = async (imageName) => {
             </svg>
         `
     }
-    const fileContent = await getFileContent(`${IMAGES_PATH}${imageName}`);
+    const fileContent = await fs.readFile(`${IMAGES_PATH}${imageName}`)
     const base64 = Buffer.from(fileContent).toString('base64');
     return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
-}
-
-const getFileContent = async (pathName) => {
-    try {
-        const fileContent = await fs.readFile(pathName)
-        return fileContent;
-    } catch (err) {
-        return undefined;
-    }
 }
 
 const getNameAndSurname = (contact) => {
