@@ -48,10 +48,10 @@ const formatContacts = async (contacts) => {
             ${formatEmails(contact)}
             ${formatUrls(contact)}
             ${formatSocialNetwork(contact)}
-            ${formatId(contact)}
           </div>
         </div>
         <div class="footer">
+          ${formatId(contact)}
           ${formatNote(contact)}
         </div>
       </div>
