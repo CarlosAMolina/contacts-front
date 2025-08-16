@@ -155,7 +155,6 @@ const formatId = (contact) => {
 
 const formatImage = async (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    // TODO use path: const CONTACTS_PATH = new URL('./fake.json', import.meta.url).pathname;
     const base64 = await getBase64FromImage(`/tmp/${imageName}.jpg`);
     return `<img src="data:image/png;base64,${base64}">`
 }
