@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises'
 import http from 'node:http'
 
-import { contacts } from './fake.js'  // TODO not use fake values
-
 export const start = () => {
     const port = typeof process.env.FRONT_PORT === 'undefined' ? 5000 : process.env.FRONT_PORT;
     const server = createServer();
@@ -16,6 +14,9 @@ const createServer = () => {
     return http.createServer(async (req, res) => {
         const HTML_PATH = new URL('./template.html', import.meta.url).pathname;
         const template = await fs.readFile(HTML_PATH, 'utf-8');
+        const CONTACTS_PATH = new URL('./fake.json', import.meta.url).pathname;
+        let contactsFileContent = await fs.readFile(CONTACTS_PATH, 'utf-8');
+        const { contacts } = JSON.parse(contactsFileContent);
         const contactsHtml = await formatContacts(contacts);
         const html = interpolate(template, {contacts: contactsHtml});
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -154,6 +155,7 @@ const formatId = (contact) => {
 
 const formatImage = async (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
+    // TODO use path: const CONTACTS_PATH = new URL('./fake.json', import.meta.url).pathname;
     const base64 = await getBase64FromImage(`/tmp/${imageName}.jpg`);
     return `<img src="data:image/png;base64,${base64}">`
 }
