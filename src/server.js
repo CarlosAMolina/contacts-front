@@ -45,8 +45,8 @@ const formatContacts = async (contacts) => {
           ${formatEmails(contact)}
           ${formatUrls(contact)}
           ${formatSocialNetwork(contact)}
-          ${formatNote(contact)}
           ${formatId(contact)}
+          ${formatNote(contact)}
         </div>
       </div>
     `
