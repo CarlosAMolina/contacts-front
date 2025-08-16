@@ -164,15 +164,14 @@ const formatId = (contact) => {
 
 const formatImage = async (contact, images) => {
     const matches = images.filter(image => image.startsWith(contact.id));
-    const imageName = matches.length === 0 ? undefined : matches[0]
-    if (imageName === undefined) {
+    if (matches.length === 0) {
         return `
             <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
               <rect width="100" height="100" fill="#ADD8E6" />
             </svg>
         `
     }
-    const fileContent = await fs.readFile(`${IMAGES_PATH}${imageName}`)
+    const fileContent = await fs.readFile(`${IMAGES_PATH}${matches[0]}`)
     const base64 = Buffer.from(fileContent).toString('base64');
     return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
 }
