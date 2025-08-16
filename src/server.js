@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises'
 import http from 'node:http'
 
+const IMAGES_PATH = "/tmp/"
+
 export const start = () => {
     const port = typeof process.env.FRONT_PORT === 'undefined' ? 5000 : process.env.FRONT_PORT;
     const server = createServer();
@@ -31,8 +33,9 @@ const interpolate = (html, data) => {
 }
 
 const formatContacts = async (contacts) => {
+    const images = await fs.readdir(IMAGES_PATH);
     const contactPromises = contacts.map( async contact => {
-        const imageHtml = await formatImage(contact);
+        const imageHtml = await formatImage(contact, images);
         return `
       <div class="contact">
         ${formatName(contact)}
@@ -159,9 +162,10 @@ const formatId = (contact) => {
         `
 }
 
-const formatImage = async (contact) => {
-    const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    return await getImageHtml(`/tmp/${imageName}.jpg`);
+const formatImage = async (contact, images) => {
+    const matches = images.filter(image => image.startsWith(contact.id));
+    const imageName = matches.length === 0 ? undefined : matches[0]
+    return await getImageHtml(imageName);
 }
 
 const formatInstagram = (contact) => {
@@ -300,15 +304,15 @@ const formatWallapop = (contact) => {
         `
 }
 
-const getImageHtml = async (imagePathName) => {
-    let fileContent = await getFileContent(imagePathName);
-    if (fileContent === undefined) {
+const getImageHtml = async (imageName) => {
+    if (imageName === undefined) {
         return `
             <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
               <rect width="100" height="100" fill="#ADD8E6" />
             </svg>
         `
     }
+    const fileContent = await getFileContent(`${IMAGES_PATH}${imageName}`);
     const base64 = Buffer.from(fileContent).toString('base64');
     return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
 }
