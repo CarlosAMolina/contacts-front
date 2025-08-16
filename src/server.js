@@ -155,8 +155,7 @@ const formatId = (contact) => {
 
 const formatImage = async (contact) => {
     const imageName = `${contact.id} ${getNameAndSurname(contact).toLowerCase()}`.replace(/\s+/g, "-");
-    const base64 = await getBase64FromImage(`/tmp/${imageName}.jpg`);
-    return `<img src="data:image/png;base64,${base64}">`
+    return await getImageHtml(`/tmp/${imageName}.jpg`);
 }
 
 const formatInstagram = (contact) => {
@@ -299,12 +298,16 @@ const getNameAndSurname = (contact) => {
     return typeof contact.surname === "undefined" ? contact.name : `${contact.name} ${contact.surname}`;
 }
 
-const getBase64FromImage = async (imagePathName) => {
+const getImageHtml = async (imagePathName) => {
     try {
         const fileContent = await fs.readFile(imagePathName)
-        return Buffer.from(fileContent ).toString('base64');
+        const base64 = Buffer.from(fileContent ).toString('base64');
+        return `<img src="data:image/png;base64,${base64}">`
     } catch (err) {
-        const emptyImageBase64 = 'iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg';
-        return emptyImageBase64;
+        return `
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#ADD8E6" />
+        </svg>
+        `
     }
 }
