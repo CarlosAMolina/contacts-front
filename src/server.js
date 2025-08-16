@@ -301,16 +301,24 @@ const formatWallapop = (contact) => {
 }
 
 const getImageHtml = async (imagePathName) => {
-    try {
-        const fileContent = await fs.readFile(imagePathName)
-        const base64 = Buffer.from(fileContent).toString('base64');
-        return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
-    } catch (err) {
+    let fileContent = await getFileContent(imagePathName);
+    if (fileContent === undefined) {
         return `
-        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" fill="#ADD8E6" />
-        </svg>
+            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" fill="#ADD8E6" />
+            </svg>
         `
+    }
+    const base64 = Buffer.from(fileContent).toString('base64');
+    return `<img src="data:image/png;base64,${base64}" alt="Contact image">`
+}
+
+const getFileContent = async (pathName) => {
+    try {
+        const fileContent = await fs.readFile(pathName)
+        return fileContent;
+    } catch (err) {
+        return undefined;
     }
 }
 
