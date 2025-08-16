@@ -294,14 +294,10 @@ const formatWallapop = (contact) => {
         `
 }
 
-const getNameAndSurname = (contact) => {
-    return typeof contact.surname === "undefined" ? contact.name : `${contact.name} ${contact.surname}`;
-}
-
 const getImageHtml = async (imagePathName) => {
     try {
         const fileContent = await fs.readFile(imagePathName)
-        const base64 = Buffer.from(fileContent ).toString('base64');
+        const base64 = Buffer.from(fileContent).toString('base64');
         return `<img src="data:image/png;base64,${base64}">`
     } catch (err) {
         return `
@@ -310,4 +306,8 @@ const getImageHtml = async (imagePathName) => {
         </svg>
         `
     }
+}
+
+const getNameAndSurname = (contact) => {
+    return typeof contact.surname === "undefined" ? contact.name : `${contact.name} ${contact.surname}`;
 }
